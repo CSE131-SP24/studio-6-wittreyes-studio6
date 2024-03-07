@@ -12,9 +12,13 @@ public class RecursiveMethods {
 	 *         ...)
 	 */
 	public static double geometricSum(int n) {
-		
-			// FIXME compute the geometric sum for the first n terms recursively
+		if (n==0) {
 			return 0;
+		}
+		else {
+			return Math.pow(.5, n) + geometricSum(n-1);
+		}
+			// FIXME compute the geometric sum for the first n terms recursively
 		
 	}
 
@@ -27,9 +31,17 @@ public class RecursiveMethods {
 	 * @return greatest common divisor of p and q
 	 */
 	public static int gcd(int p, int q) {
+		if (q==0) {
+			return p;
+		}
+		else {
+			int temp = q;
+			q = p % q;
+			p = temp;
+			return gcd(p,q);
+		}
 		
 			// FIXME compute the gcd of p and q using recursion
-			return 0;
 		
 	}
 
@@ -41,8 +53,15 @@ public class RecursiveMethods {
 	 * @param array the array to create a reverse of, not to be mutated
 	 * @return an array with the same data as the input but it reverse order
 	 */
-	public static int[] toReversed(int[] array) {
+	
+	public static int[] reverseHelper(int[] array, int i) {
+		if (i==1) {}
 		
+		
+	}
+	
+	public static int[] toReversed(int[] array) {
+		reverseHelper(array, i); //FIXXXXX
 			// FIXME create a helper method that can recursively reverse the given array
 			return new int[0];
 		
@@ -60,7 +79,27 @@ public class RecursiveMethods {
 	public static void circlesUponCircles(double xCenter, double yCenter, double radius,
 			double radiusMinimumDrawingThreshold) {
 		
-		// FIXME
+		
+		if (radius < radiusMinimumDrawingThreshold) {
+			
+		}
+		else{
+			StdDraw.circle(xCenter,yCenter,radius);
+			if(radius * 1.0/3.0 > radiusMinimumDrawingThreshold) {
+				
+			StdDraw.circle(xCenter, yCenter+radius, radius * 1.0/3.0);
+				circlesUponCircles(xCenter, yCenter+radius, radius * 1.0/3.0, radiusMinimumDrawingThreshold);
+			StdDraw.circle(xCenter, yCenter-radius, radius * 1.0/3.0);
+				circlesUponCircles(xCenter, yCenter-radius, radius * 1.0/3.0, radiusMinimumDrawingThreshold);
+			StdDraw.circle(xCenter+radius, yCenter, radius * 1.0/3.0);
+				circlesUponCircles(xCenter+radius, yCenter, radius * 1.0/3.0, radiusMinimumDrawingThreshold);
+			StdDraw.circle(xCenter-radius, yCenter, radius * 1.0/3.0);
+				circlesUponCircles(xCenter-radius, yCenter, radius * 1.0/3.0, radiusMinimumDrawingThreshold);
+			}
+			
+		}
+				
+		
 	}
 
 }
